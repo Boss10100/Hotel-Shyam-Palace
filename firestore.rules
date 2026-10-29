@@ -1,0 +1,106 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Connection testing
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+
+    // Rooms collection (16 rooms)
+    match /rooms/{roomId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Bookings collection
+    match /bookings/{bookingId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Payments collection
+    match /payments/{paymentId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Refunds collection
+    match /refunds/{refundId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Guests KYC directory
+    match /guests/{guestId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Invoices collection
+    match /invoices/{invoiceId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Operational Inventory
+    match /inventory/{itemId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Stock Movements
+    match /stock_movements/{movementId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Maintenance records
+    match /maintenance/{recordId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Audit Logs
+    match /audit_logs/{logId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Hotel Settings
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Staff access profiles
+    match /staff/{staffId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Hotel & Rooms Photo Gallery
+    match /gallery_items/{photoId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Staff whitelist invitations & pending approval requests
+    match /staff_invites/{inviteId} {
+      allow read, write: if true;
+    }
+
+    match /staff_requests/{requestId} {
+      allow read, write: if true;
+    }
+
+    // OpenWA WhatsApp Delivery Logs
+    match /whatsapp_logs/{logId} {
+      allow read, write: if true;
+    }
+  }
+}

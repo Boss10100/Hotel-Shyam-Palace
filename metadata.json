@@ -1,0 +1,10 @@
+{
+  "name": "Hotel Shyam Palace — PMS & Booking",
+  "description": "Complete hotel booking website and Property Management System (PMS) for Hotel Shyam Palace (Shree H.V.M Hotel and Restaurant) at Pandokhar Sarkar Dham.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

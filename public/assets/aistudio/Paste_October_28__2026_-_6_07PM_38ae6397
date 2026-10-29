@@ -1,0 +1,811 @@
+# MASTER BUILD PROMPT — HOTEL SHYAM PALACE
+## Complete Production-Ready Hotel Booking Website + Property Management System (PMS)
+
+You are a senior full-stack software engineer, hotel management software architect, database engineer, UI/UX designer, security engineer, and QA automation engineer.
+
+Your task is to BUILD a complete, functional, production-ready hotel booking website and Property Management System (PMS) for Hotel Shyam Palace / Shree H.V.M Hotel and Restaurant.
+
+This is a real hotel operations application, not a demo, static design, prototype, or mock dashboard.
+
+I want the complete application implemented, tested, and prepared for independent deployment. Do not stop after creating the frontend. Implement the backend, database integration, authentication, business logic, operational workflows, error handling, and tests.
+
+## 1. AUTONOMOUS EXECUTION — STRICT REQUIREMENTS
+
+- Do not ask me questions. Zero questions.
+- Make sensible technical and design decisions independently.
+- Inspect the project and available environment before implementation.
+- Build the complete application rather than merely explaining how to build it.
+- Do not stop after generating a plan or initial scaffold.
+- Continue through implementation, testing, bug fixing, and deployment preparation.
+- Preserve all previously completed working code if an existing project is provided.
+- Avoid unnecessary rebuilding, duplicate features, and wasteful implementation.
+- Do not use fake buttons, nonfunctional controls, placeholder APIs, or simulated database operations as final implementations.
+- Never claim that an integration or test works unless it has actually been verified.
+- If an external credential, paid service, or hosting permission is unavailable, implement everything possible and document the exact remaining requirement.
+- Do not expose secrets or bypass authentication.
+- Never delete real customer data or perform destructive database operations without a safe backup and migration strategy.
+
+## 2. HOTEL INFORMATION
+
+Hotel name: Hotel Shyam Palace
+
+Brand/business name: Shree H.V.M Hotel and Restaurant
+
+Address: Pandokhar Sarkar Dham, Bhander, Near Kali Maiya Mandir, Panch Akhada, Pandokhar, Madhya Pradesh 475335, India.
+
+Phone / WhatsApp: 7000354771
+
+Email: support.shyampalace@gmail.com
+
+Currency: Indian Rupees (INR, ₹)
+
+Timezone: Asia/Kolkata
+
+Default checkout time: 12:00 PM
+
+Default guest arrival deadline for reservations: 1:00 PM on the check-in date.
+
+Default advance amount: ₹500.
+
+Default GST rate: 12%.
+
+All business rules, rates, timings, cancellation rules, and hotel details must be editable through authorized settings wherever appropriate.
+
+## 3. TECHNOLOGY AND ARCHITECTURE
+
+Build a maintainable full-stack application with:
+
+- Responsive React frontend using TypeScript.
+- A secure server-side backend with validated API endpoints.
+- A persistent central database.
+- Role-based authentication and authorization.
+- Proper separation between frontend, backend, database, and integrations.
+- Environment-based configuration for secrets and external services.
+- Automated tests and clear deployment instructions.
+
+Choose a stable architecture that is compatible with the available Google AI Studio environment and can subsequently be exported and deployed independently.
+
+Prefer a portable Node.js/Express backend with a persistent MongoDB-compatible database if supported by the environment. If a different architecture is necessary, select the closest maintainable alternative and document the reason.
+
+Do not use browser localStorage as the primary database. It may be used for harmless preferences or temporary UI state only.
+
+All important records must be stored on the backend. Multiple authorized devices must see the same current data.
+
+Keep database credentials and private API keys on the server. Provide a complete .env.example containing variable names but no real secrets.
+
+The application must remain maintainable outside Google AI Studio. Avoid unnecessary platform-specific dependencies.
+
+## 4. HOTEL ROOM INVENTORY — EXACTLY 16 ROOMS
+
+Create the following initial inventory:
+
+| Room | Category | Base Rate |
+|---|---|---:|
+| 101 | Small AC | ₹1,500 |
+| 102 | Small AC | ₹1,500 |
+| 103 | Small AC | ₹1,500 |
+| 104 | Small AC | ₹1,500 |
+| 105 | Common | ₹800 |
+| 201 | Small AC | ₹1,500 |
+| 202 | Large Non-AC | ₹1,200 |
+| 203 | Small AC | ₹1,500 |
+| 204 | Common | ₹800 |
+| 205 | Deluxe | ₹1,600 |
+| 206 | Large Non-AC | ₹1,200 |
+| 207 | Deluxe | ₹1,600 |
+| 208 | Deluxe | ₹1,600 |
+| 209 | Large Non-AC | ₹1,200 |
+| 210 | Deluxe | ₹1,600 |
+| 211 | Large Non-AC | ₹1,200 |
+
+Requirements:
+
+- Seed exactly these 16 rooms on initial setup.
+- Never duplicate room records when setup or seeding runs more than once.
+- Provide manual room creation, editing, rate changes, category management, and maintenance status controls for authorized staff.
+- Keep historical booking rates unchanged when current room rates are edited.
+- Prevent overlapping confirmed bookings for the same room.
+- Support room blocking, out-of-service status, housekeeping status, and maintenance records.
+- Show room availability in real time based on reservations, occupancy, and maintenance blocks.
+
+## 5. MANUAL OPERATIONS ARE ESSENTIAL
+
+The hotel must be able to operate manually even if the public website, WhatsApp integration, or online payment gateway is unavailable.
+
+Every major operation must have a working manual alternative.
+
+Implement these controls:
+
+- Create a walk-in booking directly from the dashboard.
+- Create a phone reservation manually.
+- Create a booking received through WhatsApp.
+- Create an offline or counter reservation.
+- Manually assign or change a room.
+- Manually check guests in and out.
+- Manually enter cash, UPI, and other authorized payment records.
+- Record advance payments and outstanding balances.
+- Manually mark a payment as received, with appropriate staff permissions and an audit trail.
+- Print or download receipts and invoices.
+- Edit booking dates, guest details, and room assignments with validation.
+- Cancel bookings and record refunds.
+- Mark rooms under maintenance.
+- Add operational notes and special requests.
+- Search bookings by guest name, phone, booking ID, room, and date.
+- Manually override a permitted room status with a mandatory reason and audit log.
+- Correct mistakes through controlled adjustment or reversal records rather than silently rewriting financial history.
+
+Manual actions must still use the same backend, database, validation, permissions, and audit logs as other operations.
+
+Do not create separate disconnected local records for manual bookings.
+
+## 6. WALK-IN CHECK-IN WORKFLOW
+
+Build a dedicated, easy-to-use Walk-in Check-in button on the main dashboard.
+
+The workflow should be:
+
+1. Staff clicks Walk-in Check-in.
+2. Enter or search for the guest's existing profile.
+3. Enter the primary guest's full name and mobile number.
+4. Enter the total number of guests and any additional guest information required by the hotel's configured policy.
+5. Record check-in and planned check-out dates and times.
+6. Select the room category or a specific available room.
+7. Show available rooms for the entire requested stay.
+8. Collect required guest KYC information and an authorized ID-document image or scan.
+9. Provide a secure method to upload or capture a guest photo when supported by the device.
+10. Record the ID document type, document reference, verification status, and verifying staff member.
+11. Show the room rate, number of nights, applicable taxes, total amount, advance, amount paid, and balance.
+12. Select the payment method: cash, UPI, or another configured method.
+13. Save the booking and payment records to the central database.
+14. Assign the room and update its status to Occupied when check-in is completed.
+15. Generate a unique booking ID and a printable check-in record or receipt.
+16. Show a clear success or error message.
+
+Allow an authorized staff member to save an incomplete guest registration as a draft when necessary, but do not falsely mark a guest as fully checked in if mandatory verification or required fields remain incomplete.
+
+Validate room availability again on the server when the booking is confirmed.
+
+Support multiple guests under one booking, subject to the hotel's configured occupancy policy.
+
+## 7. RESERVATIONS AND PHONE BOOKINGS
+
+Implement a complete reservation management module.
+
+Reservation sources must include:
+
+- Website request.
+- Telephone.
+- WhatsApp.
+- Walk-in.
+- Counter booking.
+- Other manually configured sources.
+
+For phone reservations, record:
+
+- Guest name.
+- Mobile number.
+- Check-in date.
+- Check-out date.
+- Guest count.
+- Room category preference.
+- Specific room assignment when appropriate.
+- Quoted rate.
+- Advance amount and payment status.
+- Booking source.
+- Staff member who created the reservation.
+- Notes and special requests.
+- Reservation status and confirmation history.
+
+Business rules:
+
+- Phone reservations require a ₹500 advance via UPI under the existing hotel policy.
+- An advance must not be marked as received until the payment has actually been verified.
+- Record the UPI transaction reference when available.
+- A reservation with an unpaid advance must remain clearly marked as Pending Advance or Awaiting Confirmation according to the configured workflow.
+- Once the required advance is verified and the reservation is confirmed, record the confirmation timestamp and staff member.
+- Tell the guest to arrive by 1:00 PM on the check-in date.
+- If the guest has not arrived by the deadline, flag the reservation for staff review.
+- Do not automatically cancel a reservation or forfeit an advance without an explicitly configured and authorized policy.
+- Send WhatsApp confirmation only when the integration is configured and the message can actually be sent.
+- If WhatsApp is unavailable, provide a ready-to-copy confirmation message for staff to send manually.
+
+Provide reservation statuses such as:
+
+- New Request.
+- Awaiting Staff Confirmation.
+- Awaiting Advance.
+- Confirmed.
+- Checked In.
+- Checked Out.
+- Cancelled.
+- No-show.
+- Refund Pending.
+- Refunded.
+
+Only permit valid status transitions, with authorized manual overrides recorded in the audit log.
+
+## 8. PUBLIC WEBSITE BOOKING REQUESTS
+
+Create a professional public-facing hotel website with:
+
+- Home page.
+- Room categories and photographs.
+- Room descriptions and amenities.
+- Rates and relevant booking policies.
+- Contact information and directions.
+- WhatsApp contact option.
+- Booking request form.
+- Responsive mobile layout.
+
+The public booking form must collect:
+
+- Guest name.
+- Mobile number.
+- Check-in date.
+- Check-out date.
+- Number of guests.
+- Preferred room category.
+- Optional message or special request.
+
+The public website booking is a REQUEST ONLY, not an automatically confirmed reservation.
+
+Workflow:
+
+1. Guest submits a booking request.
+2. Backend validates the request and stores it.
+3. The guest receives a request reference number.
+4. Staff reviews availability and calls the guest to confirm.
+5. Staff records the result of the call and updates the reservation status.
+6. A confirmation is sent only after an authorized staff member confirms the booking.
+
+Show a clear notice that submission does not guarantee a confirmed room.
+
+Prevent duplicate submissions, invalid dates, and malicious input. Apply reasonable rate limits and server-side validation.
+
+Do not expose private guest records or internal room-management APIs to public visitors.
+
+## 9. ADVANCE PAYMENTS AND PAYMENT METHODS
+
+Support:
+
+- Cash.
+- UPI.
+- Bank transfer.
+- Online gateway payments when configured.
+- Other administrator-configured methods.
+
+On-site bookings may accept cash or UPI.
+
+The default advance amount is ₹500, but authorized staff may record a different amount when permitted by the hotel's policy.
+
+Every payment record must contain:
+
+- Payment ID.
+- Booking ID.
+- Amount.
+- Payment method.
+- Payment status.
+- Transaction reference where applicable.
+- Timestamp.
+- Staff member who recorded or verified the payment.
+- Notes and any reversal or refund reference.
+
+Never treat a submitted UPI reference or screenshot as automatic proof of successful payment without an authorized verification process.
+
+Use a payment gateway only when valid provider credentials and server-side verification are configured. Do not store card numbers, CVVs, UPI PINs, or banking passwords.
+
+The system must calculate the amount paid and balance due from the payment ledger rather than relying on a manually typed balance.
+
+## 10. CANCELLATION AND REFUND POLICY
+
+Implement the existing hotel policy as a configurable rule:
+
+- Cancellation two or more days before check-in: refund the full ₹500 advance.
+- Cancellation one day before check-in or on the check-in date: refund ₹400 from the ₹500 advance, deducting ₹100.
+
+For any advance amount different from ₹500, do not blindly apply these exact refund amounts. Use a configurable rule and require authorized review.
+
+Requirements:
+
+- Calculate the applicable refund based on the hotel's configured local timezone and the cancellation timestamp.
+- Show the calculated refund and deduction before confirmation.
+- Record the cancellation reason and authorized staff member.
+- Record refund status separately from cancellation status.
+- Support Refund Pending, Refund Initiated, Partially Refunded, and Refunded states as appropriate.
+- Never claim a refund has been completed unless it has actually been paid or verified.
+- Record refund transaction references when available.
+- Prevent duplicate refunds.
+- Keep the original payment and booking history intact.
+
+## 11. GUEST KYC AND DOCUMENT MANAGEMENT
+
+Implement a secure KYC module.
+
+Support:
+
+- Guest name and contact information.
+- Guest count and linked additional guests.
+- ID document type.
+- ID reference or number when legally necessary.
+- Secure ID image/document upload.
+- Guest photo capture or upload when supported.
+- Verification status.
+- Verification timestamp and staff member.
+- Guest registration notes.
+
+Security and privacy requirements:
+
+- Collect only information necessary for lawful hotel operations.
+- Never store Aadhaar or other sensitive ID data unnecessarily.
+- Do not log full ID numbers or sensitive document contents.
+- Restrict document access to authorized staff.
+- Keep documents in private storage, not public folders.
+- Use expiring or authenticated access links where supported.
+- Do not embed ID images or private documents in public URLs.
+- Provide a configurable retention and deletion policy consistent with applicable law.
+- Record document access or deletion events where appropriate.
+- Never use uploaded guest documents to train an AI model.
+
+## 12. CHECK-IN, CHECK-OUT AND OCCUPANCY
+
+Implement:
+
+- Arrivals due today.
+- Expected departures today.
+- Guests currently staying.
+- Late arrivals.
+- Overdue check-outs.
+- Room availability.
+- Room occupancy.
+- Early check-in and late checkout with authorized adjustments.
+- Check-in verification and room assignment.
+- Check-out bill review.
+- Final payment and outstanding balance handling.
+- Room release and housekeeping status updates.
+
+Default checkout time: 12:00 PM.
+
+A room must not become Available until the check-out process and relevant room-status checks are completed.
+
+Do not permit a second active guest assignment to the same room unless a valid configured policy explicitly allows it.
+
+Provide a complete, searchable guest-stay history.
+
+## 13. BILLING, GST AND INVOICES
+
+Build a proper billing module.
+
+Default GST rate: 12%, configurable by an authorized administrator.
+
+The application must calculate:
+
+- Room charges.
+- Number of nights.
+- Additional configured charges.
+- Discounts when authorized.
+- Applicable taxes.
+- Total bill.
+- Advance payments.
+- Additional payments.
+- Outstanding balance.
+- Refunds.
+- Final amount due.
+
+Clearly show the tax calculation and distinguish taxable amounts from total amounts.
+
+Do not silently change rates, tax values, or previously issued invoices.
+
+Use a consistent and configurable tax calculation method, including rounding rules. Make tax settings adjustable if the hotel's applicable tax treatment changes.
+
+Support:
+
+- Printable invoices.
+- Downloadable PDF receipts.
+- Payment receipts.
+- Advance receipts.
+- Final checkout bills.
+- Credit or adjustment notes when necessary.
+- Sequential invoice numbering.
+- Booking and invoice references.
+- Hotel details and contact information.
+- Payment history.
+- Cash and UPI reconciliation reports.
+
+Do not hard-code an assumption that the same GST treatment applies in every possible transaction. Keep tax configuration transparent and allow an authorized administrator to set the applicable rules.
+
+## 14. ADMIN DASHBOARD
+
+Create a professional operational dashboard showing:
+
+- Total rooms.
+- Available rooms.
+- Occupied rooms.
+- Reserved rooms.
+- Rooms under maintenance.
+- Today's arrivals.
+- Today's departures.
+- Current guests.
+- Pending reservation requests.
+- Reservations awaiting advance.
+- Pending payments.
+- Outstanding balances.
+- Today's collections.
+- Cash collections.
+- UPI collections.
+- Cancellation and refund totals.
+- Occupancy percentage.
+- Recent bookings and operational activity.
+
+Dashboard numbers must come from actual database records and must update after relevant operations.
+
+Provide date filters and drill-down views for important statistics.
+
+Do not display fabricated revenue or occupancy figures.
+
+## 15. ROOM CALENDAR AND FRONT DESK OPERATIONS
+
+Implement a room calendar and front desk view.
+
+Features:
+
+- Room-by-room occupancy timeline.
+- Date range navigation.
+- Arrivals and departures.
+- Booking status indicators.
+- Room category filters.
+- Search by room and guest.
+- Reservation creation from a date or room selection.
+- Clear warnings for overlapping bookings.
+- Maintenance blocks.
+- Room status updates.
+- A useful mobile layout for reception staff.
+
+Use clear status labels and accessible color contrast. Never rely on color alone to convey important booking information.
+
+## 16. STAFF MANAGEMENT AND ACCESS CONTROL
+
+Implement secure roles:
+
+- Owner / Super Admin.
+- Administrator.
+- Receptionist.
+- Accountant.
+- Housekeeping.
+- Custom roles where appropriate.
+
+The Owner / Super Admin can:
+
+- Manage staff accounts and permissions.
+- Manage rooms and rates.
+- View reports and financial summaries.
+- Configure tax and business settings.
+- Review audit logs.
+- Manage backups and retention settings.
+- Authorize sensitive corrections, cancellations, refunds, and manual overrides.
+
+Receptionists can perform permitted front desk operations but must not automatically receive full database or financial administration access.
+
+Accountants can access billing and permitted financial reports.
+
+Housekeeping staff can access assigned room-status and housekeeping functions without unnecessary guest financial data.
+
+Requirements:
+
+- Secure password hashing.
+- Server-side authorization on every protected API.
+- Secure session or token handling.
+- Account deactivation.
+- Login rate limiting.
+- Password reset flow when supported.
+- No hard-coded production passwords.
+- No shared unrestricted admin account.
+- Audit logging for important actions.
+
+Create the initial owner account using a secure setup process. Never publish default credentials or secrets.
+
+## 17. MANUAL OVERRIDES AND AUDIT LOGS
+
+Manual controls are mandatory, but sensitive actions must remain accountable.
+
+Record audit events for:
+
+- Booking creation and edits.
+- Room assignment changes.
+- Rate overrides.
+- Check-in and check-out.
+- Payment recording.
+- Payment verification.
+- Refunds.
+- Invoice adjustments.
+- Reservation cancellation.
+- Staff permission changes.
+- Guest document access where appropriate.
+- Data export.
+- Room maintenance changes.
+- Manual status overrides.
+
+Each event should record the actor, timestamp, action, affected record, and reason where applicable.
+
+Never allow a normal staff member to silently erase payment history, alter an already issued invoice, or delete a guest's history without authorization and an auditable correction process.
+
+Provide searchable audit logs for authorized administrators.
+
+## 18. WHATSAPP AND EMAIL
+
+Implement an integration layer for notifications.
+
+Possible notifications:
+
+- Booking request received.
+- Reservation confirmed.
+- Advance pending.
+- Check-in reminder.
+- Cancellation acknowledgement.
+- Refund status update.
+- Checkout reminder.
+
+WhatsApp requirements:
+
+- Use an approved WhatsApp Business API provider when configured.
+- Store credentials on the server.
+- Provide a manual click-to-chat link and copyable message when automated sending is unavailable.
+- Never claim a message was sent if only a WhatsApp link was opened.
+
+Email requirements:
+
+- Use a configured email provider.
+- Send only when valid credentials and provider configuration exist.
+- Handle failed delivery gracefully.
+- Keep delivery status separate from booking status.
+
+Provide a settings page showing whether each integration is configured and operational.
+
+## 19. SEARCH, FILTERS, REPORTS AND EXPORTS
+
+Provide:
+
+- Global booking search.
+- Guest search.
+- Room search.
+- Date filters.
+- Reservation source filters.
+- Payment status filters.
+- Booking status filters.
+- Guest history.
+- Daily collection report.
+- Monthly collection report.
+- Occupancy report.
+- Arrivals and departures report.
+- Cancellation and refund report.
+- Outstanding balance report.
+- Room maintenance report.
+- Staff activity report.
+
+Allow authorized exports to CSV or Excel where supported.
+
+Exports must respect user permissions and protect sensitive guest information.
+
+Record important data exports in the audit log.
+
+## 20. INVENTORY AND MAINTENANCE
+
+Implement basic hotel operational inventory management for configurable items such as linens, toiletries, cleaning supplies, and other supplies.
+
+Features:
+
+- Item name and category.
+- Current quantity.
+- Unit of measure.
+- Minimum stock level.
+- Stock addition and usage records.
+- Supplier details where required.
+- Low-stock warnings.
+- Stock movement history.
+- Maintenance requests.
+- Maintenance status and notes.
+- Room out-of-service periods.
+
+Inventory and maintenance should be manageable manually without external integrations.
+
+## 21. UI/UX AND BRANDING
+
+Design a polished, premium hotel management application.
+
+Visual direction:
+
+- Professional hotel luxury aesthetic.
+- Clean layout with restrained dark and gold accents.
+- High readability.
+- Consistent typography and spacing.
+- Modern dashboard cards and tables.
+- Fast, uncluttered front desk workflows.
+- Responsive desktop, tablet, and mobile layouts.
+- Accessible forms and keyboard navigation.
+- Clear empty, loading, success, and error states.
+
+The public website should look welcoming and professional.
+
+The internal PMS should prioritize operational speed, clear information, and minimal clicks.
+
+Avoid unnecessary animations, excessive gradients, oversized components, and decorative elements that slow down staff.
+
+Build reusable components and a consistent design system.
+
+## 22. DATA MODEL AND RELATIONSHIPS
+
+Create a proper relational or document data model for:
+
+- Users.
+- Roles and permissions.
+- Rooms.
+- Room categories.
+- Room rates and rate history.
+- Guests.
+- Guest documents.
+- Bookings.
+- Booking guests.
+- Room assignments.
+- Check-in and check-out events.
+- Payments.
+- Refunds.
+- Invoices.
+- Invoice line items.
+- Reservations.
+- Cancellation records.
+- Notifications.
+- Maintenance requests.
+- Inventory items.
+- Stock movements.
+- Audit logs.
+- Hotel settings.
+
+Use stable identifiers, timestamps, appropriate indexes, server-side validation, and referential consistency.
+
+Prevent duplicate room records and duplicate payment/refund operations.
+
+Use transactions or equivalent consistency controls where needed, especially for room allocation, payment recording, refunds, and concurrent bookings.
+
+Use database migrations and idempotent seed logic. Do not reset the database during ordinary startup.
+
+## 23. SECURITY AND PRODUCTION READINESS
+
+Implement:
+
+- Server-side validation.
+- Input sanitization.
+- Protection against injection and common web vulnerabilities.
+- Authentication and authorization.
+- Secure cookie/session configuration where applicable.
+- CSRF protection where applicable.
+- Rate limiting.
+- Safe error handling.
+- Restricted CORS configuration.
+- Security headers.
+- Secure document storage.
+- Secret management.
+- Appropriate logging without sensitive data.
+- Database backup and restoration guidance.
+- Health-check endpoints.
+- Production logging and monitoring guidance.
+
+Do not expose stack traces, credentials, database connection strings, private documents, or internal server details to public visitors.
+
+Ensure all privileged actions are authorized on the backend, not merely hidden in the frontend.
+
+## 24. TESTING REQUIREMENTS
+
+Create and run meaningful automated tests where the environment supports them.
+
+At minimum, test:
+
+1. Application startup.
+2. Database connection.
+3. Owner and staff authentication.
+4. Role-based permissions.
+5. Room inventory seeding without duplicates.
+6. Room availability.
+7. Overlapping reservation prevention.
+8. Public booking request creation.
+9. Manual phone reservation.
+10. Walk-in check-in.
+11. Guest KYC validation.
+12. Advance payment recording.
+13. Cash and UPI payment records.
+14. Billing and GST calculations.
+15. Cancellation and refund rules.
+16. Check-in and checkout.
+17. Outstanding balance calculations.
+18. Room status updates.
+19. Persistence after page refresh and a new login.
+20. API authorization.
+21. Input validation and error handling.
+22. Responsive layout.
+23. Production build.
+24. Database migration and backup instructions.
+
+Use test data in a separate test environment where possible.
+
+Do not create fake production financial records or use real guest information for testing.
+
+For each test, report the actual result. Fix discovered bugs and rerun the affected tests.
+
+Do not claim that cross-device persistence, automated WhatsApp, payment processing, or production deployment has been verified unless it actually has been.
+
+## 25. DEPLOYMENT AND SOURCE CODE PORTABILITY
+
+Prepare the complete application for independent deployment.
+
+Deliver:
+
+- Full frontend source.
+- Full backend source.
+- Database schema or model definitions.
+- Database migration and seed scripts.
+- package.json and lockfile where applicable.
+- .env.example without real secrets.
+- Build and startup scripts.
+- README with installation instructions.
+- Production deployment instructions.
+- Database backup and restoration guide.
+- API documentation.
+- Test instructions.
+- A list of external credentials and services required.
+- A list of remaining limitations.
+
+The deployment architecture must be portable and should support Hostinger where the selected Hostinger plan supports the chosen runtime.
+
+Do not assume all Hostinger plans support every backend framework.
+
+Document the appropriate hosting type for the actual backend, the database connection requirements, and the environment variables needed in production.
+
+Do not hard-code preview URLs into production configuration.
+
+Do not make deployment depend unnecessarily on Google AI Studio remaining open.
+
+If deployment credentials or account authorization are unavailable, finish all possible preparation and provide exact deployment steps without pretending deployment has completed.
+
+## 26. FINAL ACCEPTANCE CRITERIA
+
+The application is complete only when:
+
+- The public website works.
+- The internal PMS works.
+- All 16 configured rooms are present.
+- Walk-in check-in works.
+- Phone and manual reservations work.
+- Guest KYC is handled securely.
+- Room allocation and availability are consistent.
+- Payments, advances, balances, invoices, GST, cancellations, and refunds follow configured rules.
+- Staff permissions are enforced on the backend.
+- Data persists in a real central database.
+- Multiple authorized devices access the same data.
+- The UI works on desktop and mobile.
+- Critical automated tests pass.
+- Production build succeeds.
+- Required external services and credentials are documented.
+- Source code and deployment instructions are available.
+- No critical unfinished functionality is represented as complete.
+
+## 27. EXECUTION INSTRUCTIONS
+
+Start by inspecting the current environment and identifying the available build, backend, database, and testing capabilities.
+
+Then implement the entire application in logical phases, automatically continuing between phases without asking me questions.
+
+Prioritize a working, secure, complete core PMS before optional enhancements.
+
+Do not stop at a visual mockup, scaffold, or generated frontend.
+
+Do not fabricate hotel data, credentials, test results, payments, integrations, or deployment status.
+
+When the work is complete, provide a concise final report containing:
+
+1. What was built.
+2. Which features were verified working.
+3. Which tests passed and failed.
+4. Database type and configuration requirements.
+5. Source-code locations and export instructions.
+6. Hosting and deployment instructions.
+7. Any remaining external credentials, service costs, or unavoidable limitations.
+
+NOW BUILD THE COMPLETE HOTEL SHYAM PALACE WEBSITE AND PMS. Make sensible decisions independently, implement the real functionality, test it thoroughly, fix errors, and deliver the best production-ready result possible.

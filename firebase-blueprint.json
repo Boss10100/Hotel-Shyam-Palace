@@ -1,0 +1,316 @@
+{
+  "entities": {
+    "Room": {
+      "title": "Room",
+      "description": "Hotel Room item in the 16-room inventory",
+      "type": "object",
+      "properties": {
+        "roomNumber": { "type": "string", "maxLength": 10 },
+        "category": { "type": "string", "maxLength": 50 },
+        "floor": { "type": "number" },
+        "baseRate": { "type": "number" },
+        "isAc": { "type": "boolean" },
+        "status": { "type": "string", "maxLength": 20 },
+        "housekeepingStatus": { "type": "string", "maxLength": 20 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["roomNumber", "category", "baseRate", "status"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Hotel reservation, stay record, and booking details",
+      "type": "object",
+      "properties": {
+        "bookingId": { "type": "string", "maxLength": 50 },
+        "referenceNumber": { "type": "string", "maxLength": 50 },
+        "guestName": { "type": "string", "maxLength": 100 },
+        "guestPhone": { "type": "string", "maxLength": 20 },
+        "guestEmail": { "type": "string", "maxLength": 100 },
+        "guestCount": { "type": "number" },
+        "checkInDate": { "type": "string", "maxLength": 20 },
+        "checkOutDate": { "type": "string", "maxLength": 20 },
+        "checkInTime": { "type": "string", "maxLength": 20 },
+        "checkOutTime": { "type": "string", "maxLength": 20 },
+        "roomCategory": { "type": "string", "maxLength": 50 },
+        "assignedRoomId": { "type": "string", "maxLength": 20 },
+        "quotedRate": { "type": "number" },
+        "totalNights": { "type": "number" },
+        "roomCharges": { "type": "number" },
+        "extraCharges": { "type": "number" },
+        "discount": { "type": "number" },
+        "subtotal": { "type": "number" },
+        "gstRate": { "type": "number" },
+        "gstAmount": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "advanceAmount": { "type": "number" },
+        "amountPaid": { "type": "number" },
+        "balanceDue": { "type": "number" },
+        "bookingSource": { "type": "string", "maxLength": 30 },
+        "status": { "type": "string", "maxLength": 30 },
+        "isDraft": { "type": "boolean" },
+        "arrivalDeadline": { "type": "string", "maxLength": 50 },
+        "createdByStaffId": { "type": "string", "maxLength": 100 },
+        "createdByStaffName": { "type": "string", "maxLength": 100 },
+        "specialRequests": { "type": "string", "maxLength": 1000 },
+        "cancellationReason": { "type": "string", "maxLength": 500 },
+        "cancelledAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["bookingId", "guestName", "guestPhone", "checkInDate", "checkOutDate", "status", "createdAt"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Financial payment transaction record",
+      "type": "object",
+      "properties": {
+        "bookingId": { "type": "string", "maxLength": 50 },
+        "amount": { "type": "number" },
+        "paymentMethod": { "type": "string", "maxLength": 30 },
+        "paymentStatus": { "type": "string", "maxLength": 30 },
+        "transactionRef": { "type": "string", "maxLength": 100 },
+        "notes": { "type": "string", "maxLength": 500 },
+        "recordedByStaffId": { "type": "string", "maxLength": 100 },
+        "recordedByStaffName": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["bookingId", "amount", "paymentMethod", "paymentStatus", "createdAt"]
+    },
+    "Refund": {
+      "title": "Refund",
+      "description": "Processed or pending cancellation refund record",
+      "type": "object",
+      "properties": {
+        "bookingId": { "type": "string", "maxLength": 50 },
+        "amountRequested": { "type": "number" },
+        "deductionAmount": { "type": "number" },
+        "netRefundAmount": { "type": "number" },
+        "reason": { "type": "string", "maxLength": 500 },
+        "refundStatus": { "type": "string", "maxLength": 30 },
+        "transactionRef": { "type": "string", "maxLength": 100 },
+        "approvedByStaffId": { "type": "string", "maxLength": 100 },
+        "approvedByStaffName": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["bookingId", "netRefundAmount", "refundStatus", "createdAt"]
+    },
+    "Guest": {
+      "title": "Guest",
+      "description": "Guest KYC record and profile",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "email": { "type": "string", "maxLength": 100 },
+        "idType": { "type": "string", "maxLength": 50 },
+        "idNumberMasked": { "type": "string", "maxLength": 50 },
+        "idDocumentUrl": { "type": "string", "maxLength": 2000 },
+        "photoUrl": { "type": "string", "maxLength": 2000 },
+        "totalStays": { "type": "number" },
+        "verificationStatus": { "type": "string", "maxLength": 30 },
+        "verifiedBy": { "type": "string", "maxLength": 100 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fullName", "phone", "createdAt"]
+    },
+    "Invoice": {
+      "title": "Invoice",
+      "description": "Official sequential GST invoice record",
+      "type": "object",
+      "properties": {
+        "invoiceNumber": { "type": "string", "maxLength": 50 },
+        "bookingId": { "type": "string", "maxLength": 50 },
+        "guestName": { "type": "string", "maxLength": 100 },
+        "guestPhone": { "type": "string", "maxLength": 20 },
+        "guestGstin": { "type": "string", "maxLength": 30 },
+        "roomNumber": { "type": "string", "maxLength": 10 },
+        "roomCategory": { "type": "string", "maxLength": 50 },
+        "checkInDate": { "type": "string", "maxLength": 20 },
+        "checkOutDate": { "type": "string", "maxLength": 20 },
+        "totalNights": { "type": "number" },
+        "roomRate": { "type": "number" },
+        "subtotal": { "type": "number" },
+        "cgstRate": { "type": "number" },
+        "cgstAmount": { "type": "number" },
+        "sgstRate": { "type": "number" },
+        "sgstAmount": { "type": "number" },
+        "totalTax": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "advancePaid": { "type": "number" },
+        "balancePaid": { "type": "number" },
+        "paymentMode": { "type": "string", "maxLength": 50 },
+        "issuedAt": { "type": "string", "format": "date-time" },
+        "issuedByStaffName": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["invoiceNumber", "bookingId", "totalAmount", "issuedAt"]
+    },
+    "InventoryItem": {
+      "title": "InventoryItem",
+      "description": "Operational inventory item",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "maxLength": 50 },
+        "currentQuantity": { "type": "number" },
+        "unit": { "type": "string", "maxLength": 20 },
+        "minStockLevel": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "category", "currentQuantity", "unit"]
+    },
+    "StockMovement": {
+      "title": "StockMovement",
+      "description": "Stock addition or usage log",
+      "type": "object",
+      "properties": {
+        "itemId": { "type": "string", "maxLength": 50 },
+        "itemName": { "type": "string", "maxLength": 100 },
+        "movementType": { "type": "string", "maxLength": 20 },
+        "quantity": { "type": "number" },
+        "reason": { "type": "string", "maxLength": 200 },
+        "recordedByStaffName": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["itemId", "movementType", "quantity", "createdAt"]
+    },
+    "MaintenanceRecord": {
+      "title": "MaintenanceRecord",
+      "description": "Room maintenance issue or out-of-service block",
+      "type": "object",
+      "properties": {
+        "roomId": { "type": "string", "maxLength": 20 },
+        "issueTitle": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 500 },
+        "priority": { "type": "string", "maxLength": 20 },
+        "status": { "type": "string", "maxLength": 20 },
+        "reportedBy": { "type": "string", "maxLength": 100 },
+        "resolvedAt": { "type": "string", "format": "date-time" },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["roomId", "issueTitle", "priority", "status", "createdAt"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Operational audit log entry for accountability",
+      "type": "object",
+      "properties": {
+        "actorId": { "type": "string", "maxLength": 100 },
+        "actorName": { "type": "string", "maxLength": 100 },
+        "actorRole": { "type": "string", "maxLength": 50 },
+        "action": { "type": "string", "maxLength": 100 },
+        "entityType": { "type": "string", "maxLength": 50 },
+        "entityId": { "type": "string", "maxLength": 100 },
+        "details": { "type": "string", "maxLength": 2000 },
+        "reason": { "type": "string", "maxLength": 500 },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["actorName", "action", "entityType", "timestamp"]
+    },
+    "HotelSettings": {
+      "title": "HotelSettings",
+      "description": "Hotel configuration, GST, rules, and contact info",
+      "type": "object",
+      "properties": {
+        "hotelName": { "type": "string", "maxLength": 100 },
+        "brandName": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 300 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "email": { "type": "string", "maxLength": 100 },
+        "upiId": { "type": "string", "maxLength": 100 },
+        "upiQrNote": { "type": "string", "maxLength": 200 },
+        "defaultAdvanceAmount": { "type": "number" },
+        "defaultGstRate": { "type": "number" },
+        "defaultCheckoutTime": { "type": "string", "maxLength": 20 },
+        "defaultArrivalDeadline": { "type": "string", "maxLength": 20 },
+        "cancellationRules": { "type": "string", "maxLength": 1000 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["hotelName", "phone", "defaultAdvanceAmount", "defaultGstRate"]
+    },
+    "StaffMember": {
+      "title": "StaffMember",
+      "description": "Hotel staff user profile with assigned role and permissions",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 100 },
+        "name": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "maxLength": 50 },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "name", "role", "isActive"]
+    },
+    "WhatsAppLog": {
+      "title": "WhatsAppLog",
+      "description": "OpenWA automated WhatsApp message delivery record",
+      "type": "object",
+      "properties": {
+        "recipientPhone": { "type": "string", "maxLength": 20 },
+        "templateType": { "type": "string", "maxLength": 50 },
+        "messageBody": { "type": "string", "maxLength": 4000 },
+        "status": { "type": "string", "maxLength": 20 },
+        "provider": { "type": "string", "maxLength": 50 },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["recipientPhone", "templateType", "messageBody", "status", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/rooms/{roomId}": {
+      "schema": "Room",
+      "description": "Collection of the 16 hotel rooms"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Hotel reservations, walk-ins, and guest bookings"
+    },
+    "/payments/{paymentId}": {
+      "schema": "Payment",
+      "description": "Payment transactions for bookings"
+    },
+    "/refunds/{refundId}": {
+      "schema": "Refund",
+      "description": "Cancellation refund logs"
+    },
+    "/guests/{guestId}": {
+      "schema": "Guest",
+      "description": "Guest KYC profiles and visit records"
+    },
+    "/invoices/{invoiceId}": {
+      "schema": "Invoice",
+      "description": "GST invoices generated for stays"
+    },
+    "/inventory/{itemId}": {
+      "schema": "InventoryItem",
+      "description": "Hotel supplies and linen inventory"
+    },
+    "/stock_movements/{movementId}": {
+      "schema": "StockMovement",
+      "description": "Audit records of stock addition or deduction"
+    },
+    "/maintenance/{recordId}": {
+      "schema": "MaintenanceRecord",
+      "description": "Room maintenance tickets and out-of-service periods"
+    },
+    "/audit_logs/{logId}": {
+      "schema": "AuditLog",
+      "description": "Operational audit trail for accountability"
+    },
+    "/settings/{settingId}": {
+      "schema": "HotelSettings",
+      "description": "Hotel configuration and policies"
+    },
+    "/staff/{staffId}": {
+      "schema": "StaffMember",
+      "description": "Staff access control and roles"
+    },
+    "/whatsapp_logs/{logId}": {
+      "schema": "WhatsAppLog",
+      "description": "OpenWA automated WhatsApp delivery history"
+    }
+  }
+}
